@@ -21,4 +21,7 @@ class GuestTests (LiveServerTestCase):
               self.browser.get('http://localhost:8000')
               # John notices the guesthouse title
               self.assertIn("Guesthouse",self.browser.title)
-              # finish the test ...
+              # John is invited to leave a comment
+              # John types "A very nice stay"
+              # John hits enter, the page updates
+              # and the new page shows John's comment on the webpage
