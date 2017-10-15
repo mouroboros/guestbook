@@ -13,9 +13,8 @@ class GuestTests (LiveServerTestCase):
        def tearDown (self):
             self.browser.quit()
 
-       # Insert our user story here
 
-       def test_user_lands_on_home_page (self) :
+       def test_first_user_lands_on_home_page (self) :
               # Upon leaving a guesthouse, John is offered
               # the opportunity to leave comments about his stay
               # via a web browser 
@@ -39,3 +38,13 @@ class GuestTests (LiveServerTestCase):
                      any(row.text == 'A very nice stay' for row in rows),
                      f"New comment item did not appear in table. Contents were:\n{table.text}"
                      )
+
+       def test_second_user_adds_a_comment (self) :
+              # Steve checks out the guestbook app
+              # Steve notices the comment "A very nice stay" has already been
+              # submitted by another guest.
+              # Steve types "I had a relaxing visit"
+              # Steve presses enter
+              # Steve is directed a new page which shows Steves comments
+              # Steve also sees the original comments by John.
+              pass
