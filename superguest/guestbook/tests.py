@@ -25,6 +25,10 @@ class HomePageTest (TestCase) :
         self.assertIn('Very peaceful', response.content.decode())
         self.assertTemplateUsed(response, 'home.html')
 
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/')
+        self.assertEqual(Comment.objects.count(), 0)
+
 class CommentModelTest(TestCase) :
 
     def test_saving_and_retriving_comments (self) :
