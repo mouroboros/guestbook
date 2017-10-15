@@ -36,5 +36,6 @@ class GuestTests (LiveServerTestCase):
               table = self.browser.find_element_by_id('id_comment_table')
               rows = table.find_elements_by_tag_name('tr')
               self.assertTrue(
-                     any(row.text == 'A very nice stay')
+                     any(row.text == 'A very nice stay' for row in rows),
+                     f"New comment item did not appear in table. Contents were:\n{table.text}"
                      )
