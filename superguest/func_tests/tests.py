@@ -41,10 +41,30 @@ class GuestTests (LiveServerTestCase):
 
        def test_second_user_adds_a_comment (self) :
               # Steve checks out the guestbook app
+              self.browser.get('http://localhost:8000')
               # Steve notices the comment "A very nice stay" has already been
               # submitted by another guest.
+              table = self.browser.find_element_by_id('id_comment_table')
+              rows = table.find_elements_by_tag_name('tr')
+              self.assertTrue(
+                     any(row.text == 'A very nice stay' for row in rows),
+                     f"first comment item did not appear in table. Contents were:\n{table.text}"
+                     )
               # Steve types "I had a relaxing visit"
+              inputbox = self.browser.find_element_by_id('id_new_comment')
+              inputbox.send_keys('I had a relaxing visit')
               # Steve presses enter
+              inputbox.send_keys(Keys.ENTER)
+              time.sleep(5)
               # Steve is directed a new page which shows Steves comments
+              table = self.browser.find_element_by_id('id_comment_table')
+              rows = table.find_elements_by_tag_name('tr')
+              self.assertTrue(
+                     any(row.text == 'I had a relaxing visit' for row in rows),
+                     f"first comment item did not appear in table. Contents were:\n{table.text}"
+                     )
               # Steve also sees the original comments by John.
-              pass
+              self.assertTrue(
+                     any(row.text == 'A very nice stay' for row in rows),
+                     f"first comment item did not appear in table. Contents were:\n{table.text}"
+                     )
