@@ -36,5 +36,5 @@ class GuestTests (LiveServerTestCase):
               table = self.browser.find_element_by_id('id_comment_table')
               rows = table.find_elements_by_tag_name('tr')
               self.assertTrue(
-                     any(row.text == 'A new nice stay')
+                     any(row.text == 'A very nice stay')
                      )
