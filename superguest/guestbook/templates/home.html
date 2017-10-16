@@ -2,13 +2,13 @@
 {% block input_form %}
 	<h1>Comments Book</h1>
 	<form method="POST">
-		<input name="comment_text" id='id_new_comment' placeholder="Please enter a comment">
+		<input name="comment_text" id='id_new_comment' class="form-control input-lg" placeholder="Please enter a comment">
 		{% csrf_token %}
 	</form>
 {% endblock %}
 	
 {% block table %}
-	<table id="id_comment_table">
+	<table id="id_comment_table" class='table'>
 		{% for comment in comments %}
 		<tr><td>{{ comment.text }}</td></tr>
 		{% endfor %}
