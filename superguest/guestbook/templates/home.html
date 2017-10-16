@@ -1,17 +1,16 @@
-<html>
-<head>
-	<title>Le Corbusier Guesthouse </title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block input_form %}
 	<h1>Comments Book</h1>
 	<form method="POST">
 		<input name="comment_text" id='id_new_comment' placeholder="Please enter a comment">
 		{% csrf_token %}
 	</form>
+{% endblock %}
+	
+{% block table %}
 	<table id="id_comment_table">
 		{% for comment in comments %}
 		<tr><td>{{ comment.text }}</td></tr>
 		{% endfor %}
 	</table>
-</body>
-</html>	
+{% endblock %}
